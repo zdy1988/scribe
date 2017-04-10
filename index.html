@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .cw {
+            display: none;
+        }
+
+        * {
+            font-size: 20px;
+        }
+    </style>
+</head>
+    <body>
+        <table class="bordered">
+            <tr>
+                <td>
+                    <select id="select">
+                        <option value="1">没难度</option>
+                        <option value="2">渐隐级别</option>
+                        <option value="3">填空级别</option>
+                        <option value="4">默写级别</option>
+                    </select>
+                    <input type="button" value="切换" id="switch"><br>
+                    index:<span id="index">-</span><br>
+                    start:<span id="start">-</span><br>
+                    end:<span id="end">-</span><br>
+                    diff:<span id="diff">-</span><br>
+                    size:<span id="size">-</span>
+                </td>
+            </tr>
+        </table>
+        <table class="bordered cw" id="scribe1">
+            <tr>
+                <td style="width: 20px;">1</td>
+                <td><font color="black">起初神创造天地。</font></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><font color="black">地是空虚混沌．渊面黑暗．神的灵运行在水面上。</font></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><font color="black">神说：“要有光。”就有了光。</font></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+        </table>
+        <table class="bordered cw" id="scribe2">
+            <tr>
+                <td style="width: 20px;">1</td>
+                <td><font color="black">起初神创造天地。</font></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><font color="black">地是空虚混沌。渊面黑暗。神的灵运行在水面上。</font></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><font color="black">神说：“要有光。”就有了光。</font></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+        </table>
+        <table class="bordered cw" id="scribe3">
+            <tr>
+                <td style="width: 20px;">1</td>
+                <td><font color="black">起初神创造天地。</font></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><font color="black">!(地是)空虚混沌．渊面黑暗．神的灵运行在水面上。</font></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><font color="black">神说：“要有光。”就有了光。</font></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+        </table>
+        <table class="bordered cw" id="scribe4">
+            <tr>
+                <td style="width: 20px;">1</td>
+                <td><font color="black">起初神创造天地。</font></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><font color="black">地是空虚混沌．渊面黑暗．神的灵运行在水面上。地是空虚混沌．渊面黑暗．神的灵运行在水面上。地是空虚混沌．渊面黑暗．神的灵运行在水面上。地是空虚混沌．渊面黑暗．神的灵运行在水面上。</font></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><font color="black">神说：“要有光。”就有了光。</font></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><font color="black">神看光是好的，就把光暗分开了。</font></td>
+            </tr>
+        </table>
+        <table class="bordered">
+            <tr>
+                <td>
+                    <input type="button" value="提示" id="tipword"> 剩余时间为：<div id="timer" style="width: 30px; color: red; display: inline-block;"></div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/scribe.js"></script>
+<script type="text/javascript">
+    var scribe1 = new scribe('scribe1',{index:0,enterEndCallback: enterEnd});
+    var scribe2 = new scribe('scribe2',{
+        index:1,
+        level: diffLevel.fade,
+        enterEndCallback: enterEnd,
+        autoSymbol:false,
+        enterItemEndCallback: function () {
+            console.log("完成了一节！");
+        },
+        enterListEndCallback: function () {
+            console.log("完成了一章！");
+        }
+    });
+    var scribe3 = new scribe('scribe3',{
+        index:1,
+        level: diffLevel.fill,
+        fillInData: [
+            {index: 1, data: "起初神"},
+            {index: 2, data: "地是,渊面"},
+            {index: 3, data: "神,光"},
+            {index: 4, data: "神,光"}
+        ],
+        enterEndCallback: enterEnd});
+    var scribe4 = new scribe('scribe4',{
+        index:1,
+        level:diffLevel.dictation,
+        timer:5,
+        timerCallback: function (timer) {
+            $("#timer").html(timer);
+        },
+        timerOver: function () {
+            alert('over!');
+        },
+        tipLimit:4,
+        enterEndCallback: enterEnd
+    });
+    $('#switch').click(function () {
+        $('.cw').hide();
+        $('.cw').eq(parseInt($('#select').val()-1)).show();
+        if($('#select').val()=='4') {
+            scribe4.ResetCountDown();
+            scribe4.StartCountDown();
+        }else{
+            scribe4.ResetCountDown();
+            scribe4.SuspendCountDown();
+        }
+    });
+    $('#tipword').click(function () {
+        var id = $('.cw:visible').attr('id');
+        if(id == 'scribe1')
+        {
+            scribe1.TipWord();
+        }
+        else if(id == 'scribe2')
+        {
+            scribe2.TipWord();
+        }
+        else if(id == 'scribe3')
+        {
+            scribe3.TipWord();
+        }
+        else if(id == 'scribe4')
+        {
+            scribe4.TipWord();
+        }
+    })
+
+    function enterEnd(index,start,end,diff,size) {
+        $("#index").html(index);
+        $("#start").html(start.Format('YYYY-MM-DD hh:mm:ss')).css('color','red');
+        $("#end").html(end.Format('YYYY-MM-DD hh:mm:ss')).css('color','red');
+        $("#diff").html(diff).css('color','red');
+        $("#size").html(size).css('color','red');
+    }
+</script>
