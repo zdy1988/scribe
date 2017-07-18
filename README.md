@@ -10,7 +10,7 @@ jQuery(function($) {
 });
 ```
 
->	Demo : https://zdy1988.github.io/scribe/
+>	Demo : [https://zdy1988.github.io/scribe/](https://zdy1988.github.io/scribe/)
 
 ![scribe](http://zdyonline.com/scribe/image/scribe.gif)
 
